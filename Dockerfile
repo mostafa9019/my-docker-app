@@ -1,8 +1,9 @@
-FROM python:3.9-slim
+from flask import Flask
+app = Flask(__name__)
 
-WORKDIR /app
-COPY . .
-RUN pip install -r requirements.txt
+@app.route("/")
+def hello():
+    return "✅ Bonjour depuis PDA-MAGASIN (prod) !"
 
-EXPOSE 5000
-CMD ["python", "app.py"]
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
